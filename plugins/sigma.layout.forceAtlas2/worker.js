@@ -1,5 +1,5 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(root) {
 
   /**
    * Sigma ForceAtlas2.5 Webworker
@@ -10,8 +10,8 @@
    * Version: 1.0.3
    */
 
-  var _root = this,
-      inWebWorker = !('document' in _root);
+  var _root = root;
+  var inWebWorker = !('document' in _root);
 
   /**
    * Worker Function Wrapper
@@ -1121,9 +1121,10 @@
   else {
 
     // We are requesting the worker from sigma, we retrieve it therefore
-    if (typeof sigma === 'undefined')
+    if (typeof _root.sigma === 'undefined')
       throw 'sigma is not declared';
 
-    sigma.prototype.getForceAtlas2Worker = getWorkerFn;
+    _root.sigma.prototype.getForceAtlas2Worker = getWorkerFn;
   }
-}).call(this);
+};
+module.exports = { init: init };

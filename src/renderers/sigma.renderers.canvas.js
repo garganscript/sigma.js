@@ -1,5 +1,5 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma, conrad) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
@@ -8,8 +8,8 @@
     throw 'conrad is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.renderers');
-
+  sigma.renderers = sigma.renderers || {};
+  sigma.canvas = sigma.canvas || {};
   /**
    * This function is the constructor of the canvas sigma's renderer.
    *
@@ -436,7 +436,8 @@
    *
    * They are stored in different files, in the "./canvas" folder.
    */
-  sigma.utils.pkg('sigma.canvas.nodes');
-  sigma.utils.pkg('sigma.canvas.edges');
-  sigma.utils.pkg('sigma.canvas.labels');
-}).call(this);
+  sigma.canvas.nodes = sigma.canvas.nodes || {};
+  sigma.canvas.edges = sigma.canvas.edges || {};
+  sigma.canvas.labels = sigma.canvas.labels || {};
+};
+module.exports = { init: init };

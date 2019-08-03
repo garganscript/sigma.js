@@ -1,5 +1,4 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
 
   /**
    * GEXF Library
@@ -532,11 +531,7 @@
    * Exporting
    * ----------
    */
-  if (typeof this.gexf !== 'undefined')
-    throw 'gexf: error - a variable called "gexf" already ' +
-          'exists in the global scope';
-
-  this.gexf = {
+  let gexf = {
 
     // Functions
     parse: parse,
@@ -546,6 +541,4 @@
     version: '0.1.1'
   };
 
-  if (typeof exports !== 'undefined' && this.exports !== exports)
-    module.exports = this.gexf;
-}).call(this);
+module.exports = { gexf: gexf };

@@ -1,5 +1,5 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   /**
    * Sigma SVG Exporter
@@ -20,7 +20,7 @@
   /**
    * Polyfills
    */
-  var URL = this.URL || this.webkitURL || this;
+  // var URL = window.URL || window.webkitURL || window;
 
 
   /**
@@ -222,4 +222,5 @@
 
     return output;
   };
-}).call(this);
+};
+module.exports = { init: init };

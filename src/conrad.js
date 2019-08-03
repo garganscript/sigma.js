@@ -27,8 +27,7 @@
  * from, out of or in connection with the software or the use or other dealings
  * in the Software.
  */
-(function(global) {
-  'use strict';
+'use strict';
 
   // Check that conrad.js has not been loaded yet:
   if (global.conrad)
@@ -974,11 +973,4 @@
     // Version:
     version: '0.1.0'
   };
-
-  if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports)
-      exports = module.exports = conrad;
-    exports.conrad = conrad;
-  }
-  global.conrad = conrad;
-})(this);
+module.exports = { conrad: conrad };

@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.webgl.nodes');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.webgl = sigma.webgl || {};
+  sigma.webgl.nodes = sigma.webgl.nodes || {};
 
   /**
    * This node renderer will display nodes in the fastest way: Nodes are basic
@@ -173,4 +177,5 @@
       return program;
     }
   };
-})();
+};
+module.exports = { init: init };

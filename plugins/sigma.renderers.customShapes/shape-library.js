@@ -1,5 +1,4 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
 
   var shapes = [];
   var register = function(name,drawShape,drawBorder) {
@@ -149,7 +148,7 @@
    * Exporting
    * ----------
    */
-  this.ShapeLibrary = {
+  module.exports = {
 
     // Functions
     enumerate: enumerateShapes,
@@ -159,4 +158,3 @@
     version: '0.1'
   };
 
-}).call(this);

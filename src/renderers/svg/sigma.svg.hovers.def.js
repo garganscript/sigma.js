@@ -1,11 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.svg.hovers');
+  sigma.svg = sigma.svg || {};
+  sigma.svg.hovers = sigma.svg.hovers || {};
 
   /**
    * The default hover renderer.
@@ -110,4 +111,5 @@
       return group;
     }
   };
-}).call(this);
+};
+module.exports = { init: init };

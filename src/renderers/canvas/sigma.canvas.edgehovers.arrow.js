@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.canvas.edgehovers');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.edgehovers = sigma.canvas.edgehovers || {};
 
   /**
    * This hover renderer will display the edge with a different color or size.
@@ -73,4 +77,5 @@
     context.closePath();
     context.fill();
   };
-})();
+};
+module.exports = { init: init };

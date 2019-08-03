@@ -29,8 +29,8 @@
 * > // like { "n0": {"authority": 0.00343, "hub": 0.023975}, "n1": [...]
 */
 
-(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
@@ -151,4 +151,5 @@
     }
   )
 
-}).call(window)
+};
+module.exports = { init: init };

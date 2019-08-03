@@ -1,5 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
+
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.classes = sigma.classes || {};
 
   /**
    * Sigma Quadtree Module for edges
@@ -815,18 +820,6 @@
     return edgesArray;
   };
 
-
-  /**
-   * EXPORT:
-   * *******
-   */
-  if (typeof this.sigma !== 'undefined') {
-    this.sigma.classes = this.sigma.classes || {};
-    this.sigma.classes.edgequad = edgequad;
-  } else if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports)
-      exports = module.exports = edgequad;
-    exports.edgequad = edgequad;
-  } else
-    this.edgequad = edgequad;
-}).call(this);
+  sigma.classes.edgequad = edgequad;
+};
+module.exports = { init: init };

@@ -1,11 +1,13 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.misc.animation.running');
+  sigma.misc = sigma.misc || {};
+  sigma.misc.animation = sigma.misc.animation || {};
+  sigma.misc.animation.running = sigma.misc.animation.running || {};
 
   /**
    * Generates a unique ID for the animation.
@@ -236,4 +238,5 @@
 
     return false;
   };
-}).call(this);
+};
+module.exports = { init: init };

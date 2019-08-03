@@ -1,11 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.canvas.hovers');
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.hovers = sigma.canvas.hovers || {};
 
   /**
    * This hover renderer will basically display the label with a background.
@@ -103,4 +104,5 @@
       );
     }
   };
-}).call(this);
+};
+module.exports = { init: init };

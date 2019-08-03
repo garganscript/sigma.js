@@ -1,5 +1,10 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
+
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.classes = sigma.classes || {};
 
   /**
    * Dispatcher constructor.
@@ -185,20 +190,7 @@
     dispatcher.apply(target, args);
   };
 
+  sigma.classes.dispatcher = dispatcher;
 
-
-
-  /**
-   * EXPORT:
-   * *******
-   */
-  if (typeof this.sigma !== 'undefined') {
-    this.sigma.classes = this.sigma.classes || {};
-    this.sigma.classes.dispatcher = dispatcher;
-  } else if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports)
-      exports = module.exports = dispatcher;
-    exports.dispatcher = dispatcher;
-  } else
-    this.dispatcher = dispatcher;
-}).call(this);
+};
+module.exports = { init: init };

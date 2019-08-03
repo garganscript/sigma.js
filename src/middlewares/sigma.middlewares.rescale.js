@@ -1,12 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.middlewares');
-  sigma.utils.pkg('sigma.utils');
+  sigma.middlewares = sigma.middlewares || {};
+  sigma.utils = sigma.utils || {};
 
   /**
    * This middleware will rescale the graph such that it takes an optimal space
@@ -186,4 +186,5 @@
       maxY: maxY
     };
   };
-}).call(this);
+};
+module.exports = {init: init};

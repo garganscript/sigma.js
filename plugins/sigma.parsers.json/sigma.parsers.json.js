@@ -1,12 +1,11 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma, window) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Initialize package:
-  sigma.utils.pkg('sigma.parsers');
-  sigma.utils.pkg('sigma.utils');
+  sigma.parsers = sigma.parsers || {};
+  sigma.utils = sigma.utils || {};
 
   /**
    * Just an XmlHttpRequest polyfill for different IE versions.
@@ -85,4 +84,5 @@
     };
     xhr.send();
   };
-}).call(this);
+};
+module.exports = { init: init };

@@ -1,11 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Initialize packages:
-  sigma.utils.pkg('sigma.canvas.edges.labels');
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.edges = sigma.canvas.edges || {};
+  sigma.canvas.edges.labels = sigma.canvas.edges.labels || {};
 
   /**
    * This label renderer will just display the label on the curve of the edge.
@@ -109,4 +110,5 @@
 
     context.restore();
   };
-}).call(this);
+};
+module.exports = { init: init };

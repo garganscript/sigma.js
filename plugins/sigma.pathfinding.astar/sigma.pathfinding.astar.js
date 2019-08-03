@@ -1,5 +1,5 @@
-(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined') {
     throw 'sigma is not declared';
@@ -131,4 +131,5 @@
       }
     }
   );
-}).call(window);
+};
+module.exports = { init: init };

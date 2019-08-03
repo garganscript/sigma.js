@@ -1,7 +1,7 @@
-;(function() {
-    'use strict';
+'use strict';
+let init = function(sigma) {
 
-    sigma.utils.pkg('sigma.canvas.edges');
+  sigma.canvas.edges = sigma.canvas.edges || {};
 
     /**
      * This edge renderer will display edges as curves.
@@ -111,4 +111,5 @@
         return getQuadraticCurvePoint(startX, startY, cpX, cpY, endX, endY, bestT);
     }
 
-})();
+};
+module.exports = { init: init };

@@ -1,11 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.svg.labels');
+  sigma.svg = sigma.svg || {};
+  sigma.svg.labels = sigma.svg.labels || {};
 
   /**
    * The default label renderer. It renders the label as a simple text.
@@ -77,4 +78,5 @@
       return this;
     }
   };
-}).call(this);
+};
+module.exports = { init: init };

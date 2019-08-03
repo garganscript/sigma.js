@@ -1,5 +1,5 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma, ShapeLibrary) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
@@ -7,10 +7,10 @@
   if (typeof ShapeLibrary === 'undefined')
     throw 'ShapeLibrary is not declared';
 
-
-  // Initialize package:
-  sigma.utils.pkg('sigma.canvas.nodes');
-  sigma.utils.pkg('sigma.svg.nodes');
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.nodes = sigma.canvas.nodes || {};
+  sigma.svg = sigma.svg || {};
+  sigma.svg.nodes = sigma.svg.nodes || {};
 
   var sigInst = undefined;
   var imgCache = {};
@@ -221,7 +221,7 @@
    * Exporting
    * ----------
    */
-  this.CustomShapes = {
+  return {
 
     // Functions
     init: initPlugin,
@@ -231,6 +231,5 @@
     version: '0.1'
   };
 
-
-
-}).call(this);
+};
+module.exports = { init: init };

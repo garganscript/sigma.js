@@ -1,7 +1,8 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.webgl.edges');
+  sigma.webgl = sigma.webgl || {};
+  sigma.webgl.edges = sigma.webgl.edges || {};
 
   /**
    * This edge renderer will display edges as lines going from the source node
@@ -255,4 +256,5 @@
       return program;
     }
   };
-})();
+};
+module.exports = {init: init};

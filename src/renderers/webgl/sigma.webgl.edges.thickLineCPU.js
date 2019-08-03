@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.webgl.edges');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.webgl = sigma.webgl || {};
+  sigma.webgl.edges = sigma.webgl.edges || {};
 
   /**
    * This will render edges as thick lines using four points translated
@@ -217,4 +221,5 @@
       return program;
     }
   };
-})();
+};
+module.exports = { init: init };

@@ -1,11 +1,11 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.misc');
+  sigma.misc = sigma.misc || {};
 
   /**
    * This helper will bind any DOM renderer (for instance svg)
@@ -153,4 +153,5 @@
     // Mouseout
     container.addEventListener('mouseout', onOut, true);
   };
-}).call(this);
+};
+module.exports = { init: init };

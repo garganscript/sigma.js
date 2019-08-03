@@ -3,13 +3,13 @@
  * some node properties. Check the sigma.plugins.animate function doc or the
  * examples/animate.html code sample to know more.
  */
-(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  sigma.utils.pkg('sigma.plugins');
+  sigma.plugins = sigma.plugins || {};
 
   var _id = 0,
       _cache = {};
@@ -201,4 +201,5 @@
       c.edgequadtree._enabled = true;
     }
   };
-}).call(window);
+};
+module.exports = { init: init };

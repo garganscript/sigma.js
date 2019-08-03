@@ -1,12 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.misc');
-
+  sigma.misc = sigma.misc || {};
+  sigma.canvas = sigma.canvas || {};
   /**
    * This method listens to "overNode", "outNode", "overEdge" and "outEdge"
    * events from a renderer and renders the nodes differently on the top layer.
@@ -219,4 +219,5 @@
       }
     }
   };
-}).call(this);
+};
+module.exports = {init: init};

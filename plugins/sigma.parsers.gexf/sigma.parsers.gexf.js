@@ -1,11 +1,11 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+
+let init = function(sigma, gexf) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Initialize package:
-  sigma.utils.pkg('sigma.parsers');
+  sigma.parsers = sigma.parsers || {};
 
   // Just a basic ID generator:
   var _id = 0;
@@ -111,4 +111,5 @@
     else if (typeof target === 'object')
       return parse(gexf.parse(target));
   };
-}).call(this);
+};
+module.exports = { init: init };

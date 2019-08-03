@@ -1,6 +1,4 @@
-;(function(undefined) {
-  'use strict';
-
+'use strict';
   var __instances = {};
 
   /**
@@ -726,14 +724,4 @@
 
 
 
-
-  /**
-   * EXPORT:
-   * *******
-   */
-  if (typeof this.sigma !== 'undefined')
-    throw 'An object called sigma is already in the global scope.';
-
-  this.sigma = sigma;
-
-}).call(this);
+module.exports = { sigma: sigma };

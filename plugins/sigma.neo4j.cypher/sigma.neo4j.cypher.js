@@ -1,16 +1,12 @@
-;(function (undefined) {
-    'use strict';
+'use strict';
+let init = function(sigma) {
 
-    if (typeof sigma === 'undefined')
-        throw 'sigma is not declared';
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
 
-    // Declare neo4j package
-    sigma.utils.pkg("sigma.neo4j");
-
-    // Initialize package:
-    sigma.utils.pkg('sigma.utils');
-
-
+  sigma.neo4j = sigma.neo4j || {};
+  sigma.utils = sigma.utils || {};
+  
     /**
      * This function is an helper for the neo4j communication.
      *
@@ -213,6 +209,5 @@
         sigma.neo4j.send(neo4j, '/db/data/relationship/types', 'GET', null, callback);
     };
 
-}).call(this);
-
-    
+};
+module.exports = { init: init };

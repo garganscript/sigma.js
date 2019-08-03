@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.canvas.nodes');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.nodes = sigma.canvas.nodes || {};
 
   /**
    * The default node renderer. It renders the node as a simple disc.
@@ -27,4 +31,5 @@
     context.closePath();
     context.fill();
   };
-})();
+};
+module.exports = { init: init };

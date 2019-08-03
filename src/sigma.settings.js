@@ -1,11 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Packages initialization:
-  sigma.utils.pkg('sigma.settings');
+  sigma.settings = sigma.settings || {};
 
   var settings = {
     /**
@@ -248,4 +247,5 @@
 
   // Export the previously designed settings:
   sigma.settings = sigma.utils.extend(sigma.settings || {}, settings);
-}).call(this);
+};
+module.exports = { init: init };

@@ -1,10 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma, root) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  var _root = this;
+  var _root = root;
 
   // Initialize packages:
   sigma.utils = sigma.utils || {};
@@ -47,4 +47,5 @@
       y2: y + (size + a) * 7
     };
   };
-}).call(this);
+};
+module.exports = { init: init };

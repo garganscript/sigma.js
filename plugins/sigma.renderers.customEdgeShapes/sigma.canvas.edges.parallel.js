@@ -1,7 +1,8 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.canvas.edges');
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.edges = sigma.canvas.edges || {};
 
   /**
    * This method renders the edge as two parallel lines.
@@ -74,4 +75,5 @@
 
     context.restore();
   };
-})();
+};
+module.exports = { init: init };

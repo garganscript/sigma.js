@@ -1,7 +1,8 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.svg.nodes');
+  sigma.svg = sigma.svg || {};
+  sigma.svg.nodes = sigma.svg.nodes || {};
 
   /**
    * The default node renderer. It renders the node as a simple disc.
@@ -55,4 +56,5 @@
       return this;
     }
   };
-})();
+};
+module.exports = { init: init };

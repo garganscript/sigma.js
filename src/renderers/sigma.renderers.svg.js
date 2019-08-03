@@ -1,5 +1,5 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma, conrad) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
@@ -8,7 +8,8 @@
     throw 'conrad is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.renderers');
+  sigma.renderers = sigma.renderers || {};
+  sigma.svg = sigma.svg || {};
 
   /**
    * This function is the constructor of the svg sigma's renderer.
@@ -473,7 +474,8 @@
    *
    * They are stored in different files, in the "./svg" folder.
    */
-  sigma.utils.pkg('sigma.svg.nodes');
-  sigma.utils.pkg('sigma.svg.edges');
-  sigma.utils.pkg('sigma.svg.labels');
-}).call(this);
+  sigma.svg.nodes = sigma.svg.nodes || {};
+  sigma.svg.edges = sigma.svg.edges || {};
+  sigma.svg.labels = sigma.svg.labels || {};
+};
+module.exports = { init: init };

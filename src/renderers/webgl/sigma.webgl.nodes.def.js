@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.webgl.nodes');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.webgl = sigma.webgl || {};
+  sigma.webgl.nodes = sigma.webgl.nodes || {};
 
   /**
    * This node renderer will display nodes as discs, shaped in triangles with
@@ -198,4 +202,5 @@
       return program;
     }
   };
-})();
+};
+module.exports = { init: init };

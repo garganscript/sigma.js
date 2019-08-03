@@ -1,5 +1,5 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
@@ -65,31 +65,6 @@
   };
 
   /**
-   * Takes a package name as parameter and checks at each lebel if it exists,
-   * and if it does not, creates it.
-   *
-   * Example:
-   * ********
-   *  > sigma.utils.pkg('a.b.c');
-   *  > a.b.c;
-   *  > // Object {};
-   *  >
-   *  > sigma.utils.pkg('a.b.d');
-   *  > a.b;
-   *  > // Object { c: {}, d: {} };
-   *
-   * @param  {string} pkgName The name of the package to create/find.
-   * @return {object}         The related package.
-   */
-  sigma.utils.pkg = function(pkgName) {
-    return (pkgName || '').split('.').reduce(function(context, objName) {
-      return (objName in context) ?
-        context[objName] :
-        (context[objName] = {});
-    }, _root);
-  };
-
-  /**
    * Returns a unique incremental number ID.
    *
    * Example:
@@ -103,8 +78,6 @@
    *  > sigma.utils.id();
    *  > // 3;
    *
-   * @param  {string} pkgName The name of the package to create/find.
-   * @return {object}         The related package.
    */
   sigma.utils.id = (function() {
     var i = 0;
@@ -916,7 +889,7 @@
    * The following utils are just here to help generating the transformation
    * matrices for the WebGL renderers.
    */
-  sigma.utils.pkg('sigma.utils.matrices');
+  sigma.utils.matrices = sigma.utils.matrices || {};
 
   /**
    * The returns a 3x3 translation matrix.
@@ -1019,4 +992,5 @@
       a20 * b02 + a21 * b12 + a22 * b22
     ];
   };
-}).call(this);
+};
+module.exports = { init: init };

@@ -1,12 +1,16 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma, conrad) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Initialize packages:
-  sigma.utils.pkg('sigma.renderers');
+  if (typeof conrad === 'undefined')
+    throw 'conrad is not declared';
 
+  // Initialize packages:
+  sigma.renderers = sigma.renderers || {};
+  sigma.webgl = sigma.webgl || {};
+  sigma.canvas = sigma.canvas || {};
   /**
    * This function is the constructor of the canvas sigma's renderer.
    *
@@ -664,7 +668,7 @@
    * Check sigma.webgl.nodes.def or sigma.webgl.nodes.fast to see how it
    * works more precisely.
    */
-  sigma.utils.pkg('sigma.webgl.nodes');
+  sigma.webgl.nodes = sigma.webgl.nodes || {};
 
 
 
@@ -699,7 +703,7 @@
    * Check sigma.webgl.edges.def or sigma.webgl.edges.fast to see how it
    * works more precisely.
    */
-  sigma.utils.pkg('sigma.webgl.edges');
+  sigma.webgl.edges = sigma.webgl.edges || {};
 
 
 
@@ -713,5 +717,7 @@
    * A labels renderer is a simple function, taking as arguments the related
    * node, the renderer and a settings function.
    */
-  sigma.utils.pkg('sigma.canvas.labels');
-}).call(this);
+  sigma.canvas.labels = sigma.canvas.labels || {};
+
+};
+module.exports = { init: init };

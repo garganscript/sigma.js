@@ -1,5 +1,10 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
+
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.classes = sigma.classes || {};
 
   /**
    * This utils aims to facilitate the manipulation of each instance setting.
@@ -104,13 +109,7 @@
    * EXPORT:
    * *******
    */
-  if (typeof this.sigma !== 'undefined') {
-    this.sigma.classes = this.sigma.classes || {};
-    this.sigma.classes.configurable = configurable;
-  } else if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports)
-      exports = module.exports = configurable;
-    exports.configurable = configurable;
-  } else
-    this.configurable = configurable;
-}).call(this);
+    sigma.classes.configurable = configurable;
+
+};
+module.exports = { init: init };

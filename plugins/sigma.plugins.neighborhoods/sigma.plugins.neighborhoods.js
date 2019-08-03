@@ -20,11 +20,13 @@
  *  >     .refresh();
  *  > });
  */
-(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
+
+  sigma.plugins = sigma.plugins || {};
 
   /**
    * This method takes the ID of node as argument and returns the graph of the
@@ -101,8 +103,6 @@
       return graph;
     }
   );
-
-  sigma.utils.pkg('sigma.plugins');
 
   /**
    * sigma.plugins.neighborhoods constructor.
@@ -183,4 +183,5 @@
       graph.clear().read(g);
     };
   };
-}).call(window);
+};
+module.exports = { init: init };

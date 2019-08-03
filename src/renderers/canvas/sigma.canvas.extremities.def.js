@@ -1,11 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.canvas.extremities');
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.extremities = sigma.canvas.extremities || {};
 
   /**
    * The default renderer for hovered edge extremities. It renders the edge
@@ -35,4 +36,5 @@
       target, context, settings
     );
   };
-}).call(this);
+};
+module.exports = { init: init };

@@ -1,5 +1,5 @@
-;(function(undefined) {
-
+//'use strict'; -- lol, doesn't work
+let init = function(sigma) {
   /**
    * Sigma Renderer Snapshot Utility
    * ================================
@@ -119,4 +119,6 @@
   // Extending canvas and webl renderers
   sigma.renderers.canvas.prototype.snapshot = snapshot;
   sigma.renderers.webgl.prototype.snapshot = snapshot;
-}).call(this);
+};
+module.exports = { init: init };
+

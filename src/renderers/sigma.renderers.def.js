@@ -1,17 +1,15 @@
-;(function(global) {
-  'use strict';
+'use strict';
+const init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.renderers');
+  sigma.renderers = sigma.renderers || {};
 
-  // Check if WebGL is enabled:
-  var canvas,
-      webgl = !!global.WebGLRenderingContext;
+  let canvas = document.createElement('canvas');
+  var webgl = typeof WebGLRenderingContext !== 'undefined';
   if (webgl) {
-    canvas = document.createElement('canvas');
     try {
       webgl = !!(
         canvas.getContext('webgl') ||
@@ -21,9 +19,9 @@
       webgl = false;
     }
   }
-
   // Copy the good renderer:
   sigma.renderers.def = webgl ?
     sigma.renderers.webgl :
     sigma.renderers.canvas;
-})(this);
+};
+module.exports = { init: init };

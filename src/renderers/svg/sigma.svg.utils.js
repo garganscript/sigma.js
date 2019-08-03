@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.svg.utils');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.svg = sigma.svg || {};
+  sigma.svg.utils = sigma.svg.utils || {};
 
   /**
    * Some useful functions used by sigma's SVG renderer.
@@ -28,4 +32,5 @@
       return this;
     }
   };
-})();
+};
+module.exports = { init: init };

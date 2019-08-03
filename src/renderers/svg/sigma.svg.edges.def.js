@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.svg.edges');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.svg = sigma.svg || {};
+  sigma.svg.edges = sigma.svg.edges || {};
 
   /**
    * The default edge renderer. It renders the node as a simple line.
@@ -70,4 +74,5 @@
       return this;
     }
   };
-})();
+};
+module.exports = { init: init };

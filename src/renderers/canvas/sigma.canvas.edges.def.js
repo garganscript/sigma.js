@@ -1,7 +1,11 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.canvas.edges');
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.edges = sigma.canvas.edges || {};
 
   /**
    * The default edge renderer. It renders the edge as a simple line.
@@ -46,4 +50,5 @@
     );
     context.stroke();
   };
-})();
+};
+module.exports = { init: init };

@@ -1,11 +1,11 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.captors');
+  sigma.captors = sigma.captors || {};
 
   /**
    * The user inputs default captor. It deals with mouse events, keyboards
@@ -407,4 +407,5 @@
       }
     }
   };
-}).call(this);
+};
+module.exports = {init: init};

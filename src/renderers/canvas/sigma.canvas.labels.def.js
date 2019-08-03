@@ -1,12 +1,12 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+const init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.canvas.labels');
-
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.labels = sigma.canvas.labels || {};
   /**
    * This label renderer will just display the label on the right of the node.
    *
@@ -41,4 +41,5 @@
       Math.round(node[prefix + 'y'] + fontSize / 3)
     );
   };
-}).call(this);
+};
+module.exports = { init: init };

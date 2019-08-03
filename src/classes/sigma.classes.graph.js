@@ -1,5 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
+
+  if (typeof sigma === 'undefined')
+    throw 'sigma is not declared';
+
+  sigma.classes = sigma.classes || {};
 
   var _methods = Object.create(null),
       _indexes = Object.create(null),
@@ -847,13 +852,6 @@
    * EXPORT:
    * *******
    */
-  if (typeof sigma !== 'undefined') {
-    sigma.classes = sigma.classes || Object.create(null);
-    sigma.classes.graph = graph;
-  } else if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports)
-      exports = module.exports = graph;
-    exports.graph = graph;
-  } else
-    this.graph = graph;
-}).call(this);
+  sigma.classes.graph = graph;
+};
+module.exports = { init: init };

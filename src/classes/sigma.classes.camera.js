@@ -1,10 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  sigma.utils.pkg('sigma.classes');
+  sigma.classes = sigma.classes || {};
 
   /**
    * The camera constructor. It just initializes its attributes and methods.
@@ -237,4 +237,6 @@
       )
     };
   };
-}).call(this);
+};
+module.exports = { init: init };
+

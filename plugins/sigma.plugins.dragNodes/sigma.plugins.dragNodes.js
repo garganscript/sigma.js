@@ -3,14 +3,13 @@
  * sigma.plugins.dragNodes function doc or the examples/basic.html &
  * examples/api-candy.html code samples to know more.
  */
-(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  sigma.utils.pkg('sigma.plugins');
-
+  sigma.plugins = sigma.plugins || {};
 
   /**
    * This function will add `mousedown`, `mouseup` & `mousemove` events to the
@@ -323,4 +322,5 @@
     }
   };
 
-}).call(window);
+};
+module.exports = { init: init };

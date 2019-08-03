@@ -1,11 +1,11 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw new Error('sigma is not declared');
 
-  // Initialize package:
-  sigma.utils.pkg('sigma.layout.noverlap');
+  sigma.layout = sigma.layout || {};
+  sigma.layout.noverlap = sigma.layout.noverlap || {};
 
   /**
    * Noverlap Layout
@@ -405,4 +405,5 @@
     return !!_instance[sigInst.id] && _instance[sigInst.id].running;
   };
 
-}).call(this);
+};
+module.exports = { init: init };

@@ -1,11 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Initialize packages:
-  sigma.utils.pkg('sigma.misc');
+  sigma.misc = sigma.misc || {};
 
   /**
    * This helper will bind any no-DOM renderer (for instance canvas or WebGL)
@@ -506,4 +505,5 @@
     for (i = 0, l = this.captors.length; i < l; i++)
       bindCaptor(this.captors[i]);
   };
-}).call(this);
+};
+module.exports = { init: init };

@@ -1,7 +1,7 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(root) {
 
-  if (typeof sigma === 'undefined')
+  if (typeof root.sigma === 'undefined')
     throw 'sigma is not declared';
 
   /**
@@ -11,7 +11,8 @@
    * Author: Guillaume Plique (Yomguithereal)
    * Version: 0.1
    */
-  var _root = this;
+  var _root = root;
+  var sigma = _root.sigma;
 
   /**
    * Feature detection
@@ -337,4 +338,5 @@
   sigma.prototype.isForceAtlas2Running = function(config) {
     return !!this.supervisor && this.supervisor.running;
   };
-}).call(this);
+};
+module.exports = { init: init };

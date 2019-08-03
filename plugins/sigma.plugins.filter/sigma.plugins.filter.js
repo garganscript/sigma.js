@@ -1,11 +1,10 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
-  // Initialize package:
-  sigma.utils.pkg('sigma.plugins');
+  sigma.plugins = sigma.plugins || {};
 
   // Add custom graph methods:
   /**
@@ -501,4 +500,5 @@
     return filter;
   };
 
-}).call(this);
+};
+module.exports = { init: init };

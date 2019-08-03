@@ -1,7 +1,8 @@
-;(function() {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
-  sigma.utils.pkg('sigma.canvas.edgehovers');
+  sigma.canvas = sigma.canvas || {};
+  sigma.canvas.edgehovers = sigma.canvas.edgehovers || {};
 
   /**
    * This hover renderer will display the edge with a different color or size.
@@ -74,4 +75,5 @@
 
     context.restore();
   };
-})();
+};
+module.exports = { init: init };

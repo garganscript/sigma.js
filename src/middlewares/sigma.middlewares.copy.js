@@ -1,11 +1,11 @@
-;(function(undefined) {
-  'use strict';
+'use strict';
+let init = function(sigma) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';
 
   // Initialize packages:
-  sigma.utils.pkg('sigma.middlewares');
+  sigma.middlewares = sigma.middlewares || {};
 
   /**
    * This middleware will just copy the graphic properties.
@@ -32,4 +32,5 @@
     for (i = 0, l = a.length; i < l; i++)
       a[i][writePrefix + 'size'] = a[i][readPrefix + 'size'];
   };
-}).call(this);
+};
+module.exports = {init: init};
