@@ -81,6 +81,12 @@ let init = function(sigma, conrad) {
     this.initDOM('canvas', 'mouse');
     this.contexts.hover = this.contexts.mouse;
 
+    let additionalContexts = options.additionalContexts || [];
+    for(var i = 0; i < additionalContexts.length; i++) {
+      let context = additionalContexts[i];
+      this.initDOM('canvas', context);
+    }
+
     // Initialize captors:
     this.captors = [];
     a = this.options.captors || [sigma.captors.mouse, sigma.captors.touch];
