@@ -40,6 +40,8 @@ let init = function(root) {
     this.ppn = 10;
     this.ppe = 3;
     this.config = {};
+    this.includeHiddenEdges = options.includeHiddenEdges === undefined ? true : options.includeHiddenEdges;
+    this.includeHiddenNodes = options.includeHiddenNodes === undefined ? true : options.includeHiddenNodes;
     this.shouldUseWorker =
       options.worker === false ? false : true && webWorkers;
     this.workerUrl = options.workerUrl;
@@ -53,8 +55,7 @@ let init = function(root) {
       if (!this.workerUrl) {
         var blob = this.makeBlob(workerFn);
         this.worker = new Worker(URL.createObjectURL(blob));
-      }
-      else {
+      } else {
         this.worker = new Worker(this.workerUrl);
       }
 
@@ -63,7 +64,6 @@ let init = function(root) {
         this.worker.webkitPostMessage || this.worker.postMessage;
     }
     else {
-
       eval(workerFn);
     }
 
@@ -128,6 +128,47 @@ let init = function(root) {
         j,
         l;
 
+    if(!this.includeHiddenEdges) {
+      var tmpEdges = edges;
+      edges = [];
+      tmpEdges.forEach(function(edge) {
+        if(!edge.hidden) {
+          edges.push(edge);
+        }
+      })
+      var nodeIdsObj = {};
+      edges.forEach(function(e) {
+        nodeIdsObj[e.source] = e;
+        nodeIdsObj[e.target] = e;
+      })
+      var tmpNodes = nodes;
+      nodes = [];
+      tmpNodes.forEach(function(n) {
+        if(nodeIdsObj[n.id]) {
+          nodes.push(n);
+        }
+      })
+    }
+
+    if(!this.includeHiddenNodes) {
+      var tmpNodes = nodes;
+      nodes = [];
+      tmpNodes.forEach(function(node) {
+        if(!node.hidden) {
+          nodes.push(node);
+        }
+      });
+      var nodeIdsObj = {};
+      nodes.forEach(function(n) { nodeIds[n.id] = n; })
+      var tmpEdges = edges;
+      edges = [];
+      tmpEdges.forEach(function(edge) {
+        if(nodeIdsObj[edge.source] && nodeIdsObj[edge.target]) {
+          edges.push(edge);
+        }
+      })
+    }
+
     // Allocating Byte arrays with correct nb of bytes
     this.nodesByteArray = new Float32Array(nbytes);
     this.edgesByteArray = new Float32Array(ebytes);
@@ -189,10 +230,11 @@ let init = function(root) {
       buffers.push(this.edgesByteArray.buffer);
     }
 
-    if (this.shouldUseWorker)
+    if (this.shouldUseWorker) {
       this.worker.postMessage(content, buffers);
-    else
+    } else {
       _root.postMessage(content, '*');
+    }
   };
 
   Supervisor.prototype.start = function() {
