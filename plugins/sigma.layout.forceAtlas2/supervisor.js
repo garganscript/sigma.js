@@ -126,22 +126,23 @@ let init = function(root) {
         nIndex = {},
         i,
         j,
-        l;
+        l,
+        tmpEdges, tmpNodes, nodeIdsObj;
 
     if(!this.includeHiddenEdges) {
-      var tmpEdges = edges;
+      tmpEdges = edges;
       edges = [];
       tmpEdges.forEach(function(edge) {
         if(!edge.hidden) {
           edges.push(edge);
         }
       })
-      var nodeIdsObj = {};
+      nodeIdsObj = {};
       edges.forEach(function(e) {
         nodeIdsObj[e.source] = e;
         nodeIdsObj[e.target] = e;
       })
-      var tmpNodes = nodes;
+      tmpNodes = nodes;
       nodes = [];
       tmpNodes.forEach(function(n) {
         if(nodeIdsObj[n.id]) {
@@ -151,16 +152,16 @@ let init = function(root) {
     }
 
     if(!this.includeHiddenNodes) {
-      var tmpNodes = nodes;
+      tmpNodes = nodes;
       nodes = [];
       tmpNodes.forEach(function(node) {
         if(!node.hidden) {
           nodes.push(node);
         }
       });
-      var nodeIdsObj = {};
+      nodeIdsObj = {};
       nodes.forEach(function(n) { nodeIds[n.id] = n; })
-      var tmpEdges = edges;
+      tmpEdges = edges;
       edges = [];
       tmpEdges.forEach(function(edge) {
         if(nodeIdsObj[edge.source] && nodeIdsObj[edge.target]) {
@@ -168,6 +169,9 @@ let init = function(root) {
         }
       })
     }
+
+    nbytes = nodes.length * this.ppn;
+    ebytes = edges.length * this.ppe;
 
     // Allocating Byte arrays with correct nb of bytes
     this.nodesByteArray = new Float32Array(nbytes);
