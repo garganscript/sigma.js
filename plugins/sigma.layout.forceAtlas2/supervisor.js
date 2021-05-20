@@ -40,6 +40,8 @@ let init = function(root) {
     this.ppn = 10;
     this.ppe = 3;
     this.config = {};
+    this.includeHiddenEdges = options.includeHiddenEdges === undefined ? true : options.includeHiddenEdges;
+    this.includeHiddenNodes = options.includeHiddenNodes === undefined ? true : options.includeHiddenNodes;
     this.shouldUseWorker =
       options.worker === false ? false : true && webWorkers;
     this.workerUrl = options.workerUrl;
@@ -47,14 +49,15 @@ let init = function(root) {
     // State
     this.started = false;
     this.running = false;
+    this.graphNodes = this.graph.nodes();
+    this.graphEdges = this.graph.edges();
 
     // Web worker or classic DOM events?
     if (this.shouldUseWorker) {
       if (!this.workerUrl) {
         var blob = this.makeBlob(workerFn);
         this.worker = new Worker(URL.createObjectURL(blob));
-      }
-      else {
+      } else {
         this.worker = new Worker(this.workerUrl);
       }
 
@@ -63,7 +66,6 @@ let init = function(root) {
         this.worker.webkitPostMessage || this.worker.postMessage;
     }
     else {
-
       eval(workerFn);
     }
 
@@ -118,15 +120,74 @@ let init = function(root) {
     return blob;
   };
 
+  Supervisor.prototype.getFilteredNodesEdges = function()  {
+    var nodes = this.graphNodes,
+        edges = this.graphEdges,
+        nbytes,
+        ebytes,
+        tmpEdges, tmpNodes, nodeIdsObj;
+
+    if(!this.includeHiddenEdges) {
+      tmpEdges = edges;
+      edges = [];
+      nodeIdsObj = {};
+      tmpEdges.forEach(function(edge) {
+        if(!edge.hidden) {
+          edges.push(edge);
+          nodeIdsObj[edge.source] = edge;
+          nodeIdsObj[edge.target] = edge;
+        }
+      })
+      tmpNodes = nodes;
+      nodes = [];
+      tmpNodes.forEach(function(node) {
+        if(nodeIdsObj[node.id]) {
+          nodes.push(node);
+        }
+      })
+    }
+
+    if(!this.includeHiddenNodes) {
+      tmpNodes = nodes;
+      nodes = [];
+      nodeIdsObj = {};
+      tmpNodes.forEach(function(node) {
+        if(!node.hidden) {
+          nodes.push(node);
+          nodeIds[node.id] = node;
+        }
+      });
+      tmpEdges = edges;
+      edges = [];
+      tmpEdges.forEach(function(edge) {
+        if(nodeIdsObj[edge.source] && nodeIdsObj[edge.target]) {
+          edges.push(edge);
+        }
+      })
+    }
+
+    nbytes = nodes.length * this.ppn;
+    ebytes = edges.length * this.ppe;
+
+    return {
+      nodes: nodes,
+      edges: edges,
+      nbytes: nbytes,
+      ebytes: ebytes
+    }
+  }
+
   Supervisor.prototype.graphToByteArrays = function() {
-    var nodes = this.graph.nodes(),
-        edges = this.graph.edges(),
-        nbytes = nodes.length * this.ppn,
-        ebytes = edges.length * this.ppe,
+    var data = this.getFilteredNodesEdges();
+    var nodes = data.nodes,
+        edges = data.edges,
+        nbytes = data.nbytes,
+        ebytes = data.ebytes,
         nIndex = {},
         i,
         j,
-        l;
+        l,
+        node, edge;
 
     // Allocating Byte arrays with correct nb of bytes
     this.nodesByteArray = new Float32Array(nbytes);
@@ -134,41 +195,44 @@ let init = function(root) {
 
     // Iterate through nodes
     for (i = j = 0, l = nodes.length; i < l; i++) {
+      node = nodes[i];
 
       // Populating index
-      nIndex[nodes[i].id] = j;
+      nIndex[node.id] = j;
 
       // Populating byte array
-      this.nodesByteArray[j] = nodes[i].x;
-      this.nodesByteArray[j + 1] = nodes[i].y;
+      this.nodesByteArray[j] = node.x;
+      this.nodesByteArray[j + 1] = node.y;
       this.nodesByteArray[j + 2] = 0;
       this.nodesByteArray[j + 3] = 0;
       this.nodesByteArray[j + 4] = 0;
       this.nodesByteArray[j + 5] = 0;
-      this.nodesByteArray[j + 6] = 1 + this.graph.degree(nodes[i].id);
+      this.nodesByteArray[j + 6] = 1 + this.graph.degree(node.id);
       this.nodesByteArray[j + 7] = 1;
-      this.nodesByteArray[j + 8] = nodes[i].size;
+      this.nodesByteArray[j + 8] = node.size;
       this.nodesByteArray[j + 9] = 0;
       j += this.ppn;
     }
 
     // Iterate through edges
     for (i = j = 0, l = edges.length; i < l; i++) {
-      this.edgesByteArray[j] = nIndex[edges[i].source];
-      this.edgesByteArray[j + 1] = nIndex[edges[i].target];
-      this.edgesByteArray[j + 2] = edges[i].weight || 0;
+      edge = edges[i];
+      this.edgesByteArray[j] = nIndex[edge.source];
+      this.edgesByteArray[j + 1] = nIndex[edge.target];
+      this.edgesByteArray[j + 2] = edge.weight || 0;
       j += this.ppe;
     }
   };
 
   // TODO: make a better send function
   Supervisor.prototype.applyLayoutChanges = function() {
-    var nodes = this.graph.nodes(),
+    var data = this.getFilteredNodesEdges();
+    var nodes = data.nodes,
         j = 0,
         realIndex;
 
     // Moving nodes
-    for (var i = 0, l = this.nodesByteArray.length; i < l; i += this.ppn) {
+    for (var i = 0, l = data.nbytes; i < l; i += this.ppn) {
       nodes[j].x = this.nodesByteArray[i];
       nodes[j].y = this.nodesByteArray[i + 1];
       j++;
@@ -189,10 +253,11 @@ let init = function(root) {
       buffers.push(this.edgesByteArray.buffer);
     }
 
-    if (this.shouldUseWorker)
+    if (this.shouldUseWorker) {
       this.worker.postMessage(content, buffers);
-    else
+    } else {
       _root.postMessage(content, '*');
+    }
   };
 
   Supervisor.prototype.start = function() {
@@ -210,7 +275,6 @@ let init = function(root) {
     }
 
     if (!this.started) {
-
       // Sending init message to worker
       this.sendByteArrayToWorker('start');
       this.started = true;

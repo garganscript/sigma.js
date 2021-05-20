@@ -49,7 +49,9 @@ let init = function(root) {
         barnesHutOptimize: false,
         barnesHutTheta: 0.5,
         startingIterations: 1,
-        iterationsPerRender: 1
+        iterationsPerRender: 1,
+        includeHiddenEdges: true,
+        includeHiddenNodes: true
       }
     };
 
