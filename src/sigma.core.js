@@ -594,7 +594,8 @@
     var isForceAtlas2Running = function() {
       var ret, err;
       try {
-        ret = self.isForceAtlas2Running();
+        //ret = self.isForceAtlas2Running();
+        ret = self.supervisor.running;
       } catch(err) {}
       return ret;
     };
