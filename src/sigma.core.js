@@ -590,10 +590,14 @@
 
     // Call each renderer:
     a = Object.keys(this.renderers);
+    var isForceAtlas2Running, err;
+    try {
+      isForceAtlas2Running = this.isForceAtlas2Running();
+    } catch(err) {}
     for (i = 0, l = a.length; i < l; i++)
       if (this.settings('skipErrors'))
         try {
-          this.renderers[a[i]].render({ isForceAtlas2Running: this.isForceAtlas2Running() });
+          this.renderers[a[i]].render({ isForceAtlas2Running: isForceAtlas2Running });
         } catch (e) {
           if (this.settings('verbose'))
             console.log(
