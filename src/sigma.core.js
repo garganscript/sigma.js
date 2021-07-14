@@ -605,7 +605,7 @@
             );
         }
       else
-        this.renderers[a[i]].render({ isForceAtlas2Running: this.isForceAtlas2Running() });
+        this.renderers[a[i]].render({ isForceAtlas2Running: isForceAtlas2Running });
 
     return this;
   };
