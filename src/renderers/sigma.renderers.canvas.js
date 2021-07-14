@@ -144,14 +144,15 @@ let init = function(sigma, conrad) {
         drawEdgeLabels = this.settings(options, 'drawEdgeLabels'),
         embedSettings = this.settings.embedObjects(options, {
           prefix: this.options.prefix
-        });
+        }),
+	isForceAtlas2Running = options.isForceAtlas2Running;
 
     // Call the resize function:
     this.resize(false);
 
     // Check the 'hideEdgesOnMove' setting:
     if (this.settings(options, 'hideEdgesOnMove'))
-	if (this.camera.isAnimated || this.camera.isMoving || (this.isForceAtlas2Running && this.isForceAtlas2Running()))
+	if (this.camera.isAnimated || this.camera.isMoving || (isForceAtlas2Running && isForceAtlas2Running()))
         drawEdges = false;
 
     // Apply the camera's view:

@@ -593,7 +593,7 @@
     for (i = 0, l = a.length; i < l; i++)
       if (this.settings('skipErrors'))
         try {
-          this.renderers[a[i]].render();
+          this.renderers[a[i]].render({ isForceAtlas2Running: this.isForceAtlas2Running });
         } catch (e) {
           if (this.settings('verbose'))
             console.log(
@@ -601,7 +601,7 @@
             );
         }
       else
-        this.renderers[a[i]].render();
+        this.renderers[a[i]].render({ isForceAtlas2Running: this.isForceAtlas2Running });
 
     return this;
   };

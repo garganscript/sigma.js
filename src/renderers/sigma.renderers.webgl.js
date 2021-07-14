@@ -277,14 +277,15 @@ let init = function(sigma, conrad) {
         options = sigma.utils.extend(params, this.options),
         drawLabels = this.settings(options, 'drawLabels'),
         drawEdges = this.settings(options, 'drawEdges'),
-        drawNodes = this.settings(options, 'drawNodes');
+        drawNodes = this.settings(options, 'drawNodes'),
+	isForceAtlas2Running = options.isForceAtlas2Running;
 
     // Call the resize function:
     this.resize(false);
 
     // Check the 'hideEdgesOnMove' setting:
     if (this.settings(options, 'hideEdgesOnMove'))
-	if (this.camera.isAnimated || this.camera.isMoving || (this.isForceAtlas2Running && this.isForceAtlas2Running()))
+	if (this.camera.isAnimated || this.camera.isMoving || (isForceAtlas2Running && isForceAtlas2Running()))
         drawEdges = false;
 
     // Clear canvases:
