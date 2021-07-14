@@ -151,7 +151,7 @@ let init = function(sigma, conrad) {
 
     // Check the 'hideEdgesOnMove' setting:
     if (this.settings(options, 'hideEdgesOnMove'))
-      if (this.camera.isAnimated || this.camera.isMoving)
+      if (this.camera.isAnimated || this.camera.isMoving || this.isForceAtlas2Running())
         drawEdges = false;
 
     // Apply the camera's view:
