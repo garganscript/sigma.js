@@ -285,7 +285,7 @@ let init = function(sigma, conrad) {
 
     // Check the 'hideEdgesOnMove' setting:
     if (this.settings(options, 'hideEdgesOnMove'))
-	if (this.camera.isAnimated || this.camera.isMoving || isForceAtlas2Running)
+	if (this.camera.isAnimated || this.camera.isMoving || isForceAtlas2Running())
         drawEdges = false;
 
     // Clear canvases:
