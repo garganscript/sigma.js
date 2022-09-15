@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "resolveJsonModule": true,
+    "moduleResolution": "node",
     "typeRoots": ["./node_modules/@types/", "./external-types/"],
     "lib": ["dom", "dom.iterable"]
   },
