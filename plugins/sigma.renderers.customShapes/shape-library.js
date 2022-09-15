@@ -148,7 +148,7 @@
    * Exporting
    * ----------
    */
-  module.exports = {
+  export {
 
     // Functions
     enumerate: enumerateShapes,
@@ -157,4 +157,3 @@
     // Version
     version: '0.1'
   };
-

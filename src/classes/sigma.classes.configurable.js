@@ -112,4 +112,5 @@ let init = function(sigma) {
     sigma.classes.configurable = configurable;
 
 };
-module.exports = { init: init };
+
+export { init };

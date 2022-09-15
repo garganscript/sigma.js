@@ -112,4 +112,5 @@ let init = function(sigma, gexf) {
       return parse(gexf.parse(target));
   };
 };
-module.exports = { init: init };
+
+export { init };

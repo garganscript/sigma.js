@@ -38,4 +38,5 @@ let init = function(sigma) {
   sigma.settings.drawEdgeLabels = true;
 
 };
-module.exports = { init: init };
+
+export { init };

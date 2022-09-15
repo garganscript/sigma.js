@@ -239,4 +239,5 @@ let init = function(sigma) {
     return false;
   };
 };
-module.exports = { init: init };
+
+export { init };

@@ -1,40 +1,42 @@
-require("./utils/sigma.polyfills.js");
+import "./utils/sigma.polyfills.js";
 
-const conrad = require('./conrad.js').conrad;
-const sigma = require('./sigma.core.js').sigma;
+import { conrad } from './conrad.js';
+import { sigma } from './sigma.core.js';
+
 console.log("conrad:", conrad, "sigma:", sigma);
-require("./utils/sigma.utils.js").init(sigma);
-require('./sigma.settings.js').init(sigma);
-require("./classes/sigma.classes.dispatcher.js").init(sigma);
-require("./classes/sigma.classes.configurable.js").init(sigma);
-require("./classes/sigma.classes.graph.js").init(sigma);
-require("./classes/sigma.classes.camera.js").init(sigma);
-require("./classes/sigma.classes.quad.js").init(sigma);
-require("./classes/sigma.classes.edgequad.js").init(sigma);
-require("./captors/sigma.captors.mouse.js").init(sigma);
-require("./captors/sigma.captors.touch.js").init(sigma);
-require("./renderers/sigma.renderers.canvas.js").init(sigma, conrad);
+
+import("./utils/sigma.utils.js").then((module) => { module.init(sigma) });
+import('./sigma.settings.js').then((module) => { module.init(sigma) });
+import("./classes/sigma.classes.dispatcher.js").then((module) => { module.init(sigma) });
+import("./classes/sigma.classes.configurable.js").then((module) => { module.init(sigma) });
+import("./classes/sigma.classes.graph.js").then((module) => { module.init(sigma) });
+import("./classes/sigma.classes.camera.js").then((module) => { module.init(sigma) });
+import("./classes/sigma.classes.quad.js").then((module) => { module.init(sigma) });
+import("./classes/sigma.classes.edgequad.js").then((module) => { module.init(sigma) });
+import("./captors/sigma.captors.mouse.js").then((module) => { module.init(sigma) });
+import("./captors/sigma.captors.touch.js").then((module) => { module.init(sigma) });
+import("./renderers/sigma.renderers.canvas.js").then((module) => { module.init(sigma, conrad) });
 // require("./renderers/sigma.renderers.svg.js").init(sigma, conrad);
-require("./renderers/sigma.renderers.webgl.js").init(sigma, conrad);
-require("./renderers/sigma.renderers.def.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edges.arrow.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edges.curve.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edges.curvedArrow.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edges.def.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edgehovers.arrow.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edgehovers.curve.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.edgehovers.def.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.extremities.def.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.hovers.def.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.labels.def.js").init(sigma);
-require("./renderers/canvas/sigma.canvas.nodes.def.js").init(sigma);
-require("./middlewares/sigma.middlewares.copy.js").init(sigma);
-require("./middlewares/sigma.middlewares.rescale.js").init(sigma);
-require("./misc/sigma.misc.animation.js").init(sigma);
-require("./misc/sigma.misc.bindDOMEvents.js").init(sigma);
-require("./misc/sigma.misc.bindEvents.js").init(sigma);
-require("./misc/sigma.misc.drawHovers.js").init(sigma);
+import("./renderers/sigma.renderers.webgl.js").then((module) => { module.init(sigma, conrad) });
+import("./renderers/sigma.renderers.def.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edges.arrow.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edges.curve.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edges.curvedArrow.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edges.def.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edgehovers.arrow.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edgehovers.curve.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.edgehovers.def.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.extremities.def.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.hovers.def.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.labels.def.js").then((module) => { module.init(sigma) });
+import("./renderers/canvas/sigma.canvas.nodes.def.js").then((module) => { module.init(sigma) });
+import("./middlewares/sigma.middlewares.copy.js").then((module) => { module.init(sigma) });
+import("./middlewares/sigma.middlewares.rescale.js").then((module) => { module.init(sigma) });
+import("./misc/sigma.misc.animation.js").then((module) => { module.init(sigma) });
+import("./misc/sigma.misc.bindDOMEvents.js").then((module) => { module.init(sigma) });
+import("./misc/sigma.misc.bindEvents.js").then((module) => { module.init(sigma) });
+import("./misc/sigma.misc.drawHovers.js").then((module) => { module.init(sigma) });
 
 
 //   [ require("sigma/plugins/sigma.exporters.svg/sigma.exporters.svg.js")
@@ -78,5 +80,4 @@ require("./misc/sigma.misc.drawHovers.js").init(sigma);
 //   , require("sigma/plugins/sigma.statistics.HITS/sigma.statistics.HITS.js")
 //   ];
 
-module.exports = { sigma: sigma, conrad: conrad };
-
+export { sigma, conrad };

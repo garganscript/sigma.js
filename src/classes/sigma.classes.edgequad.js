@@ -822,4 +822,5 @@ let init = function(sigma) {
 
   sigma.classes.edgequad = edgequad;
 };
-module.exports = { init: init };
+
+export { init };

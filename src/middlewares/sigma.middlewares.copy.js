@@ -33,4 +33,5 @@ let init = function(sigma) {
       a[i][writePrefix + 'size'] = a[i][readPrefix + 'size'];
   };
 };
-module.exports = {init: init};
+
+export { init};

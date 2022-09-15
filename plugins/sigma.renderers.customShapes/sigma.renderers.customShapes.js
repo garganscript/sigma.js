@@ -232,4 +232,5 @@ let init = function(sigma, ShapeLibrary) {
   };
 
 };
-module.exports = { init: init };
+
+export { init };

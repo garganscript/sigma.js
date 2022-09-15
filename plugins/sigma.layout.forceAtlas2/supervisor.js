@@ -403,4 +403,5 @@ let init = function(root) {
     return !!this.supervisor && this.supervisor.running;
   };
 };
-module.exports = { init: init };
+
+export { init };

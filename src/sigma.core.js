@@ -724,4 +724,4 @@
 
 
 
-module.exports = { sigma: sigma };
+export { sigma };

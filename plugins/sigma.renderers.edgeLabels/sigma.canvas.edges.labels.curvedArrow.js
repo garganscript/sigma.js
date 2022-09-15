@@ -25,4 +25,5 @@ let init = function(sigma) {
     sigma.canvas.edges.labels.curve(edge, source, target, context, settings);
   };
 };
-module.exports = { init: init };
+
+export { init };

@@ -120,5 +120,5 @@ let init = function(sigma) {
   sigma.renderers.canvas.prototype.snapshot = snapshot;
   sigma.renderers.webgl.prototype.snapshot = snapshot;
 };
-module.exports = { init: init };
 
+export { init };

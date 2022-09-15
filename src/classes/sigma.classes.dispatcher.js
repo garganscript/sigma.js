@@ -193,4 +193,5 @@ let init = function(sigma) {
   sigma.classes.dispatcher = dispatcher;
 
 };
-module.exports = { init: init };
+
+export { init };

@@ -154,4 +154,5 @@ let init = function(sigma) {
     container.addEventListener('mouseout', onOut, true);
   };
 };
-module.exports = { init: init };
+
+export { init };

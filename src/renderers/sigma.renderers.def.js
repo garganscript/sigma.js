@@ -24,4 +24,5 @@ const init = function(sigma) {
     sigma.renderers.webgl :
     sigma.renderers.canvas;
 };
-module.exports = { init: init };
+
+export { init };

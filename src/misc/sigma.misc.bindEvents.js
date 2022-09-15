@@ -506,4 +506,5 @@ let init = function(sigma) {
       bindCaptor(this.captors[i]);
   };
 };
-module.exports = { init: init };
+
+export { init };

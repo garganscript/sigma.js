@@ -3,7 +3,7 @@ let init = function(sigma) {
 
   sigma.canvas = sigma.canvas || {};
   sigma.canvas.edges = sigma.canvas.edges || {};
-  
+
 
   /**
    * This method renders the edge as a dashed line.
@@ -64,4 +64,5 @@ let init = function(sigma) {
     context.restore();
   };
 };
-module.exports = { init: init };
+
+export { init };

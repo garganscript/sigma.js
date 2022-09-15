@@ -51,4 +51,5 @@ let init = function(sigma) {
     context.stroke();
   };
 };
-module.exports = { init: init };
+
+export { init };

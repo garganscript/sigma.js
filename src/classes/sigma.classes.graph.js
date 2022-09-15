@@ -854,4 +854,5 @@ let init = function(sigma) {
    */
   sigma.classes.graph = graph;
 };
-module.exports = { init: init };
+
+export { init };

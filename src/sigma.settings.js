@@ -248,4 +248,5 @@ let init = function(sigma) {
   // Export the previously designed settings:
   sigma.settings = sigma.utils.extend(sigma.settings || {}, settings);
 };
-module.exports = { init: init };
+
+export { init };

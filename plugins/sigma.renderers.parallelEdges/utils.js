@@ -48,4 +48,5 @@ let init = function(sigma, root) {
     };
   };
 };
-module.exports = { init: init };
+
+export { init };

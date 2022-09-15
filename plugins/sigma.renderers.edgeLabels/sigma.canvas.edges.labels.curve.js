@@ -72,7 +72,7 @@ let init = function(sigma) {
 
     context.save();
 
-    
+
     if (edge.active) {
       context.font = [
         settings('activeFontStyle'),
@@ -112,4 +112,5 @@ let init = function(sigma) {
     context.restore();
   };
 };
-module.exports = { init: init };
+
+export { init };

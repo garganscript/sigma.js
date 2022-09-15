@@ -478,4 +478,5 @@ let init = function(sigma, conrad) {
   sigma.svg.edges = sigma.svg.edges || {};
   sigma.svg.labels = sigma.svg.labels || {};
 };
-module.exports = { init: init };
+
+export { init };

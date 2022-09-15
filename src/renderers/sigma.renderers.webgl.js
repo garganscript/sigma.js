@@ -720,4 +720,5 @@ let init = function(sigma, conrad) {
   sigma.canvas.labels = sigma.canvas.labels || {};
 
 };
-module.exports = { init: init };
+
+export { init };

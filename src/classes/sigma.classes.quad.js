@@ -668,6 +668,7 @@ let init = function(sigma) {
    * *******
    */
    sigma.classes.quad = quad;
- 
+
 };
-module.exports = { init: init };
+
+export { init };

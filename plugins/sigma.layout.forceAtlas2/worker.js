@@ -1129,4 +1129,5 @@ let init = function(root) {
     _root.sigma.prototype.getForceAtlas2Worker = getWorkerFn;
   }
 };
-module.exports = { init: init };
+
+export { init };

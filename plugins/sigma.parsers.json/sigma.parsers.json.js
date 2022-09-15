@@ -85,4 +85,5 @@ let init = function(sigma, window) {
     xhr.send();
   };
 };
-module.exports = { init: init };
+
+export { init };

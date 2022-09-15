@@ -3,7 +3,7 @@
  *
  * This task crush and minify Force Atlas 2 code.
  */
-var uglify = require('uglify-js');
+import * as uglify from 'uglify-js';
 
 // Shorteners
 function minify(string) {
@@ -83,7 +83,7 @@ function clean(string) {
   );
 }
 
-module.exports = function(grunt) {
+export function(grunt) {
 
   // Force atlas grunt multitask
   function multitask() {

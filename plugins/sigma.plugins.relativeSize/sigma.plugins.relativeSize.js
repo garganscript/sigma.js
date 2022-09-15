@@ -26,4 +26,5 @@ let init = function(sigma) {
     s.refresh();
   };
 };
-module.exports = { init: init }; 
+
+export { init };

@@ -223,4 +223,5 @@ let init = function(sigma) {
     return output;
   };
 };
-module.exports = { init: init };
+
+export { init };

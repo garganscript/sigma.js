@@ -30,7 +30,7 @@
 'use strict';
 
   // Check that conrad.js has not been loaded yet:
-  if (global.conrad)
+  if (window.global && window.global.conrad)
     throw new Error('conrad already exists');
 
 
@@ -973,4 +973,5 @@
     // Version:
     version: '0.1.0'
   };
-module.exports = { conrad: conrad };
+
+export { conrad };

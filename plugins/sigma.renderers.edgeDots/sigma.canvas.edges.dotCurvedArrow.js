@@ -144,4 +144,5 @@ let init = function(sigma) {
     return getQuadraticCurvePoint(startX, startY, cpX, cpY, endX, endY, bestT);
   }
 }
-module.exports = { init: init };
+
+export { init };

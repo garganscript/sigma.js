@@ -541,4 +541,4 @@
     version: '0.1.1'
   };
 
-module.exports = { gexf: gexf };
+export { gexf };

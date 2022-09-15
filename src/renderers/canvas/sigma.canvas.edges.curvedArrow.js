@@ -90,4 +90,5 @@ let init = function(sigma) {
     context.fill();
   };
 };
-module.exports = { init: init };
+
+export { init };

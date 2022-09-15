@@ -6,7 +6,7 @@ let init = function(sigma) {
 
   sigma.neo4j = sigma.neo4j || {};
   sigma.utils = sigma.utils || {};
-  
+
     /**
      * This function is an helper for the neo4j communication.
      *
@@ -210,4 +210,5 @@ let init = function(sigma) {
     };
 
 };
-module.exports = { init: init };
+
+export { init };
